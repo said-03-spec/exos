@@ -1,23 +1,29 @@
-#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
-void ft_print_comb(int nbr){
-   char n ;
-   char c ; 
-   int i;
-   n = nbr / 10 + '0';
-   c = nbr % 10 + '0';
-   
-    write(1 , &n ,1);
-    write(1 , &c ,1);
-    write(1 ,"," ,1);
-   
-}
-int main()  
+#include <unistd.h>
+void ft_print_comb(void)
 {
-    for ( int i = 0; i < 100; i++)
+    char a;
+    char b;
+    char c;
+    for (a = '0'; a <= '7'; a++)
     {
-        ft_print_comb(i);
+        for (b = a + 1; b <= '8'; b++)
+        {
+            for (c = b + 1; c <= '9'; c++)
+            {
+                write(1, &a, 1);
+                write(1, &b, 1);
+                write(1, &c, 1);
+                if (!(a == '7' && b == '8' && c == '9'))
+                    write(1, ", ", 2);
+            }
+        }
     }
-    return 0;
-}   
+}
+
+int main(void)
+{
+    ft_print_comb();
+    return (0);
+}
